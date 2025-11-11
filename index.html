@@ -1,409 +1,392 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Patoloji 2025 – Kişisel Program Seçici</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patoloji 2025 • Oturum Öncesi Hızlı Hazırlık (Tek Sayfa)</title>
+<meta name="description" content="34. Ulusal Patoloji Kongresi (12–16 Kasım 2025) için oturum bazlı, literatür destekli hızlı hazırlık sayfası.">
 <style>
-  :root{--bg:#0b1020;--panel:#121936;--muted:#94a3b8;--ok:#16a34a;--warn:#ef4444;--aff:#f59e0b;--brand:#6366f1}
-  html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1020,#0b132b)}
-  .wrap{max-width:1100px;margin:24px auto;padding:16px}
-  .card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(6px);border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-  header{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:18px 22px}
-  h1{color:#fff;font-size:22px;margin:0}
-  .badge{font-size:12px;color:#c7d2fe;border:1px solid rgba(99,102,241,.4);padding:4px 8px;border-radius:999px}
-  .grid{display:grid;grid-template-columns:1fr 320px;gap:16px}
-  @media (max-width:980px){.grid{grid-template-columns:1fr}}
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap}
-  button,select,input[type="text"]{background:rgba(255,255,255,0.06);color:#e5e7eb;border:1px solid rgba(255,255,255,0.12);padding:10px 12px;border-radius:10px}
-  button{cursor:pointer}
-  button.primary{background:linear-gradient(90deg,var(--brand),#22d3ee);border:none;color:white}
-  button.ghost{background:transparent;border-color:rgba(255,255,255,0.18)}
-  .col{padding:16px}
-  .list{display:flex;flex-direction:column;gap:10px}
-  .session{display:grid;grid-template-columns:110px 1fr auto;gap:12px;padding:12px 12px;border:1px solid rgba(255,255,255,0.09);border-radius:12px}
-  .time{color:#eab308;font-weight:600}
-  .title{color:#e5e7eb;font-weight:600}
-  .track{color:var(--muted);font-size:12px}
-  .room{color:#93c5fd;font-size:12px}
-  .chip{font-size:11px;padding:4px 8px;border-radius:999px;margin-left:8px;border:1px solid rgba(255,255,255,0.2)}
-  .conflict{border-color:rgba(239,68,68,.8);box-shadow:0 0 0 2px rgba(239,68,68,.25) inset;background:rgba(239,68,68,.06)}
-  .ok{border-color:rgba(22,163,74,.6)}
-  .affected{border-color:rgba(245,158,11,.6);box-shadow:0 0 0 2px rgba(245,158,11,.2) inset}
-  .hasconf{outline:1px dashed rgba(245,158,11,.6)}
-  .day{margin-top:8px;color:#cbd5e1;font-weight:700;font-size:14px}
-  .sticky{position:sticky;top:12px}
-  .panel{padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.08)}
-  .muted{color:var(--muted);font-size:13px}
-  .sel{display:flex;flex-direction:column;gap:8px}
-  .sel-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1px dashed rgba(255,255,255,.2);border-radius:10px}
-  .sel-item.conflict{border-color:rgba(239,68,68,.7);box-shadow:0 0 0 2px rgba(239,68,68,.25) inset}
-  .chip.warn{border-color:rgba(239,68,68,.7);color:#fecaca}
-
-  .tag{font-size:11px;border:1px solid rgba(255,255,255,.2);padding:2px 6px;border-radius:6px;margin-left:6px}
-  .foot{color:#9ca3af;font-size:12px;padding:12px 16px;border-top:1px solid rgba(255,255,255,.08)}
-  .search{flex:1;min-width:240px}
-  /* Timeline */
-  .tl-day{margin:16px 0}
-  .tl-axis{position:relative;height:28px;margin:4px 0 8px 110px}
-  .tl-axis .tick{position:absolute;top:0;border-left:1px solid rgba(255,255,255,.15);height:100%;font-size:10px;color:#cbd5e1;transform:translateX(-50%)}
-  .tl{position:relative;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 8px 14px 118px;overflow-x:auto;background:rgba(255,255,255,0.03)}
-  .tl-row{position:relative;height:46px;margin:8px 0}
-  .tl-label{position:absolute;left:8px;top:50%;transform:translateY(-50%);color:#cbd5e1;font-size:12px;width:100px}
-  .tl-bar{position:absolute;height:34px;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 8px;display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,0.06)}
-  .tl-bar.selected{border-color:rgba(22,163,74,.6)}
-  .tl-bar.affected{border-color:rgba(245,158,11,.7)}
-  .tl-bar.conflict{border-color:rgba(239,68,68,.7)}
-  .view-toggle{display:flex;gap:8px}
+  :root{
+    --bg:#0b1020; --card:#111827; --muted:#9aa4b2; --brand:#2563eb;
+    --ok:#16a34a; --warn:#ef4444; --tag:#334155;
+  }
+  html,body{margin:0;background:var(--bg);color:#e5e7eb;font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif}
+  header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#0b1020,#0b132b);
+         padding:12px;border-bottom:1px solid rgba(255,255,255,.08)}
+  h1{font-size:18px;margin:0}
+  .sub{font-size:12px;color:#cbd5e1;margin-top:2px}
+  .bar{display:flex;gap:8px;margin-top:10px}
+  input[type=text],select,button{padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0f172a;color:#e5e7eb}
+  input[type=text],select{flex:1}
+  button.primary{background:linear-gradient(90deg,#2563eb,#22d3ee);border:none;color:white}
+  .wrap{max-width:900px;margin:14px auto;padding:0 12px}
+  .day{position:sticky;top:96px;background:linear-gradient(180deg,#0b1020,#0b132b);padding:8px 2px 6px;font-weight:700;color:#cbd5e1;font-size:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+  details{background:var(--card); border:1px solid rgba(255,255,255,.10); border-radius:14px; margin:10px 0; overflow:hidden}
+  summary{list-style:none;display:flex;align-items:center;gap:10px;padding:12px}
+  summary::-webkit-details-marker{display:none}
+  .t{min-width:86px;font-weight:700;color:#fde68a}
+  .ttl{font-weight:700;line-height:1.25}
+  .room{font-size:12px;color:#93c5fd}
+  .tag{font-size:11px;background:var(--tag);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:4px 8px;color:#cbd5e1}
+  .x{padding:12px 14px 14px 14px;border-top:1px dashed rgba(255,255,255,.12)}
+  .x h3{margin:8px 0 6px 0;font-size:15px}
+  .x ul{margin:6px 0 10px 18px}
+  .x li{margin:6px 0}
+  .ref a{color:#93c5fd;text-decoration:none;word-break:break-word}
+  .muted{color:var(--muted)}
+  .pill{border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:4px 8px;font-size:12px}
+  .ok{outline:2px solid rgba(22,163,74,.5)}
+  .conf{outline:2px solid rgba(239,68,68,.6)}
+  .aff{outline:2px dashed rgba(245,158,11,.6)}
+  .foot{color:#9ca3af;font-size:12px;text-align:center;padding:24px 0}
+  .small{font-size:12px}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <header>
-        <h1>34. Ulusal Patoloji Kongresi <span class="badge">12–16 Kasım 2025 • Pine Beach, Belek</span></h1>
-        <div class="toolbar">
-          <input id="q" class="search" type="text" placeholder="Ara: başlık, konu, salon…"/>
-          <select id="day">
-            <option value="all">Tüm günler</option>
-          </select>
-          <div class="view-toggle">
-            <button id="viewList" class="ghost">Liste</button>
-            <button id="viewTL" class="ghost">Zaman Çizelgesi</button>
-          </div>
-          <button id="export" class="ghost">Seçtiklerimi .ics olarak dışa aktar</button>
-          <button id="reset" class="ghost">Seçimleri temizle</button>
-        </div>
-      </header>
-      <div class="grid">
-        <div class="col">
-          <div id="list" class="list"></div>
-        </div>
-        <div class="col sticky">
-          <div class="panel">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <strong style="color:#fff">Seçtiklerim</strong>
-              <button id="resolve" class="primary">Çakışmaları göster</button>
-            </div>
-            <div id="selected" class="sel" style="margin-top:8px"></div>
-            <p class="muted" style="margin-top:8px">Çakışan oturumlar kırmızı kenarlıkla işaretlenir. Aynı zaman aralığında birden fazla seçim yapabilirsiniz; bu araç sadece sizi uyarır.</p>
-          </div>
-          <div class="panel" style="margin-top:12px">
-            <strong style="color:#fff">Programı içe aktar</strong>
-            <p class="muted">Aşağıdaki URL, resmi program sayfasıdır. “Çek”e tıklarsanız sayfadan saatleri ve başlıkları çıkarmayı dener (beta). CORS engeli olursa, sayfadaki metni kopyalayıp kutuya yapıştırın.</p>
-            <input type="text" id="src" value="https://www.patoloji2025.org/tr/bilimsel-program.html" />
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <button id="fetch" class="ghost">Sayfadan çek (beta)</button>
-              <button id="parse" class="ghost">Aşağıdaki metni ayrıştır</button>
-            </div>
-            <textarea id="raw" rows="6" style="width:100%;margin-top:8px;background:rgba(255,255,255,0.05);color:#e5e7eb;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px" placeholder="Program metnini buraya yapıştırın…"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="foot">Kaynak: patoloji2025.org bilimsel program sayfası • Bu dosya yerelde çalışır, verilerinizi dışarıya göndermez.</div>
-    </div>
+<header>
+  <h1>34. Ulusal Patoloji Kongresi • Oturum Öncesi Hızlı Hazırlık</h1>
+  <div class="sub">12–16 Kasım 2025 • Pine Beach, Belek — tek HTML, mobil uyumlu, çökebilir (collapsible) oturum notları</div>
+  <div class="bar">
+    <input id="q" type="text" placeholder="Ara: başlık, salon, konu…">
+    <select id="day"><option value="all">Tüm günler</option></select>
   </div>
+  <div class="bar">
+    <button id="load" class="primary">Resmî programdan tüm oturumları yükle</button>
+    <button id="toggleRead">Seçili oturumları işaretle/göster</button>
+    <button id="resetSel">İşaretleri temizle</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="small muted">Amaç: Her oturumdan önce <em>1 sayfalık hızlı okuma</em> ile en güncel “hap” bilgileri ve hatırlatma listesi. <strong>Tüm veriler cihazınızda saklanır.</strong></p>
+  <div id="list"></div>
+  <p class="foot">Kaynak program: patoloji2025.org • Bu sayfa yalnızca istemci tarafında çalışır. İçerik: 2022–2025 güncel literatür ve kılavuz derlemeleri.</p>
+</div>
 
 <script>
-// ---- Yardımcılar
-const tz = 'Europe/Istanbul';
-let viewMode = localStorage.getItem('patoloji2025:viewMode')||'list';
-const df = (d) => new Intl.DateTimeFormat('tr-TR', {dateStyle:'medium', timeStyle:'short', timeZone: tz}).format(d);
-function parseTimeRange(dayISO, range){
-  // range: "HH:MM - HH:MM" or "HH:MM – HH:MM"
-  const m = range.match(/(\d{1,2}:\d{2})\s*[–-]\s*(\d{1,2}:\d{2})/);
-  if(!m) return null;
-  const [_, s, e] = m;
-  const [sh, sm] = s.split(':').map(Number);
-  const [eh, em] = e.split(':').map(Number);
-  const start = new Date(dayISO);
-  start.setHours(sh, sm, 0, 0);
-  const end = new Date(dayISO);
-  end.setHours(eh, em, 0, 0);
-  return {start, end};
-}
-function overlap(a,b){return a.start < b.end && b.start < a.end}
-function overlapsAny(s,arr){return arr.some(o=>o.id!==s.id && o.day===s.day && overlap(s,o))}
+// --------- Yardımcılar
+const tz='Europe/Istanbul';
+const DAYS={'2025-11-12':'12.11.2025 Çarşamba','2025-11-13':'13.11.2025 Perşembe','2025-11-14':'14.11.2025 Cuma','2025-11-15':'15.11.2025 Cumartesi','2025-11-16':'16.11.2025 Pazar'};
+const $list=document.getElementById('list'); const $day=document.getElementById('day'); const $q=document.getElementById('q');
+Object.entries(DAYS).forEach(([iso,label])=>{const o=document.createElement('option'); o.value=iso; o.textContent=label; $day.appendChild(o);});
+let sessions=[]; let q=''; let dayFilter='all'; let showOnlyRead=false;
+
+// Kullanıcı işaretlemeleri (hangi oturum hazır okundu)
+let read=new Set(JSON.parse(localStorage.getItem('patoloji2025:ready')||'[]'));
 function hhmm(d){return d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:tz})}
+function parseTimeRange(dayISO, range){
+  const m=range.match(/(\d{1,2}:\d{2})\s*[–-]\s*(\d{1,2}:\d{2})/); if(!m) return null;
+  const [_,s,e]=m; const [sh,sm]=s.split(':').map(Number); const [eh,em]=e.split(':').map(Number);
+  const S=new Date(dayISO); S.setHours(sh,sm,0,0); const E=new Date(dayISO); E.setHours(eh,em,0,0);
+  return {start:S,end:E};
+}
 
-// ---- Program (başlangıç verisi)
-// Kaynak metinden manuel çıkarılmış örnekler (tam listeyi İçeri Aktar bölümünden genişletebilirsiniz)
-const DAYS = {
-  '2025-11-12': '12.11.2025 Çarşamba',
-  '2025-11-13': '13.11.2025 Perşembe',
-  '2025-11-14': '14.11.2025 Cuma',
-  '2025-11-15': '15.11.2025 Cumartesi',
-  '2025-11-16': '16.11.2025 Pazar'
+// --------- Konu algılama ve içerik
+function detectTopic(title){
+  const t=(title||'').toLowerCase();
+  if(/kappa|lambda|dual\s*ish|ish/i.test(t)) return 'kappalambda';
+  if(/dijital\s*pcr|digital\s*pcr|dPCR/i.test(t)) return 'dpcr';
+  if(/molek(ü|u)ler|preanalitik|pre-analitik|ngs|panel/i.test(t)) return 'molekuler';
+  if(/pulmoner|akci(ğ|g)er/i.test(t)) return 'pulmoner';
+  if(/meme|her2/i.test(t)) return 'meme_her2';
+  if(/ba(ş|s)[ -]?boyun|orofarinks|larenks|nazofarenks|sinonazal/i.test(t)) return 'basboyun';
+  if(/sitopatoloji|sitoloji|cyto/i.test(t)) return 'cyto';
+  if(/kemik|yumu(ş|s)ak\s*doku|sarkom/i.test(t)) return 'softtissue';
+  if(/\bhpb\b|hepat|kolanjio|pankreas|safra|karaci(ğ|g)er/i.test(t)) return 'hpb';
+  if(/lenfo|lenfoprolifer|imm(ü|u)n yetmezlik|immune\s*dysregulation|ebv/i.test(t)) return 'heme_immuno';
+  return 'genel';
+}
+
+// Literatür özetleri (hap notlar) — kısaltılmış
+const PREP={
+  pulmoner:{
+    title:"Akciğer / Pulmoner Patoloji – 2022–2025 özet",
+    bullets:[
+      "🧭 **Adenokarsinom derecelendirme (IASLC, 2020→)**: >%20 **yüksek dereceli patern** (solid, mikropapiller, kompleks glandüler/cribriform) = **Grade 3**; prognozla uyumlu, raporda belirtin.",
+      "🧪 **Moleküler panel (güncel)**: *EGFR*, *ALK*, *ROS1*, *BRAF V600E*, *MET exon14*, *RET*, *NTRK*, **KRAS G12C** – biyopsi materyalinde doku koruma ve hücre zenginleştirme kritik.",
+      "🧫 **STAS**: Erken evrelerde nüksle ilişkili; sınırlı rezeksiyon kararlarında dikkate değer fakat **FS’de duyarlılık sınırlı**; raporda bulgu/şüphe olarak belirtin.",
+      "🧯 **Neoadjuvan sonrası patolojik yanıt**: **MPR ≤%10 canlı tümör**, **pCR=0%**; tümör/nekroz/stroma yüzdeleri **standart şablonla** hesaplanmalı.",
+      "🧷 **Küçük biyopsiler**: TTF‑1/p40 ile sınırlı panel + moleküler için doku tasarrufu; PD‑L1 için ayrı kesit/ayrı blok planlayın.",
+      "📌 Rapor kısa ipucu: “Patern yüzdeleri, IASLC grade, STAS (var/yok/şüpheli), neoadjuvan varsa **MPR metrikleri**, doku koruma uyarısı.”"
+    ],
+    refs:[
+      ["IASLC adenokarsinom grading (2020)", "https://www.sciencedirect.com/science/article/pii/S1556086420304688"],
+      ["Meta-analiz & doğrulamalar (2023–2024)", "https://onlinelibrary.wiley.com/doi/epdf/10.1111/his.15172"],
+      ["STAS güncel derlemeler (2022–2025)", "https://www.mdpi.com/2072-6694/17/10/1696"],
+      ["IASLC neoadjuvan patoloji değerlendirme", "https://www.jto.org/article/S1556-0864(20)30026-5/fulltext"],
+      ["IASLC neoadjuvan—reprodüksiyon girişimi", "https://www.iaslc.org/iaslc-neoadjuvant-therapy-lung-cancers-initiatives"],
+      ["CAP/IASLC/AMP moleküler test güncellemesi", "https://www.cap.org/protocols-and-guidelines/current-cap-guidelines/molecular-testing-guideline-for-the-selection-of-lung-cancer-patients-for-treatment-with-tyrosine-kinase-inhibitors"]
+    ]
+  },
+  molekuler:{
+    title:"Moleküler Patoloji – Preanalitik ve doku muhafazası",
+    bullets:[
+      "⏱️ **Soğuk iskemi** ve **fiksasyon süresi** (10% NBF): DNA/RNA bütünlüğü ve PD‑L1/ISH hassasiyeti için kritik.",
+      "🧩 **Tümör yüzdesi** ≥%20 (ideal) → makrodiseksiyonla artır; **dekal** (asit) RNA’yı bozar, formik asit tabanlı decalcify tercih et/kaçın.",
+      "🧪 **NGS** için **taze kesit** ve **kontamine bıçak kullanma**; kütüphane başarısızlıklarını azaltır.",
+      "🧬 **dPCR**: MRD/rezistans mutasyon takibi ve düşük allel frekanslarının **mutlak kantifikasyonu** için pratik bir araç (qPCR’a göre daha duyarlı).",
+      "📦 **Rapor/istem**: Klinik soru, hedeflenen genler, örnek türü, blok/lam numarası, tahmini tümör oranı belirtilmeli."
+    ],
+    refs:[
+      ["Preanalitik değişkenler & doku steward’lığı", "https://www.jmdjournal.org/article/S1525-1578(19)30003-0/fulltext"],
+      ["CAP kontrol listelerinde preanalitik vurgu", "https://www.captodayonline.com/a-preanalytics-push-in-accreditation-checklists/"],
+      ["Thorax küçük biyopsi/toplama (2020 CAP)", "https://www.sciencedirect.com/science/article/pii/S2213294520300582"],
+      ["dPCR klinik kullanımlar (2023)", "https://academic.oup.com/jalm/article/9/1/124/7502972"],
+      ["dPCR teknolojik ilerlemeler (2025)", "https://pubs.rsc.org/en/content/articlehtml/2025/lc/d5lc00055f"]
+    ]
+  },
+  meme_her2:{
+    title:"Meme – HER2 spektrumu (ASCO/CAP 2023)",
+    bullets:[
+      "🔎 **HER2‑low** (IHC **1+** veya **2+/ISH‑**) **ayrı “pozitif” kategori değildir**; rapor **klasik IHC/FISH** algoritmasıyla yapılır.",
+      "🧪 **1+ vs 0** ayrımı tedavi seçiminde önem kazandı (T‑DXd); zayıf/inkomplet membran boyanmanın **>10%** odaklarda varlığı **1+** lehine.",
+      "🧫 **Preanalitik**: Fiksasyon 6–72 saat (NBF), membran artefaktlarına dikkat; internal kontrol ve uygun pozitif/negatif kontroller.",
+      "📝 Rapor ipucu: İHC skoru, %pozitif hücre, boyanma paterni; 2+ ise **ISH sonucu** mutlaka eklenir."
+    ],
+    refs:[
+      ["ASCO/CAP 2023 HER2 güncellemesi (CAP)", "https://www.cap.org/protocols-and-guidelines/cap-guidelines/current-cap-guidelines/recommendations-for-human-epidermal-growth-factor-2-testing-in-breast-cancer"],
+      ["ASCO Post özeti (2023)", "https://ascopost.com/issues/july-25-2023/asco-cap-guideline-update-confirms-previous-recommendations-for-her2-testing-in-breast-cancer/"]
+    ]
+  },
+  basboyun:{
+    title:"Baş‑Boyun – WHO 5. Baskı (2022→2024) öne çıkanlar",
+    bullets:[
+      "📚 **WHO5, Cilt 9 (2024 baskı duyurusu)**: Moleküler vurgusu artmış, bazı başlıklar yeniden düzenlenmiş.",
+      "🦠 **HPV‑ilişkili orofarinks** ayrı antite; p16 ile tarama + HPV spesifik testlerle doğrulama (klinik bağlam).",
+      "🧬 **Sinonazal** tümörlerde yeni/yeniden tanımlanan antiteler ve genetik sürücüler (ör. **SWI/SNF** eksiklikleri gibi) vurgulu.",
+      "🦷 Odontojenik ve tükürük bezi tümörlerinde nomenklatür sadeleştirmeleri; raporda moleküler eşlik eden notlar öneriliyor."
+    ],
+    refs:[
+      ["WHO5 Baş‑Boyun – IARC duyurusu (2024)", "https://www.iarc.who.int/news-events/publication-of-the-who-classification-of-tumours-5th-edition-volume-9-head-and-neck-tumours/"],
+      ["Güncellemeler (genel derleme)", "https://link.springer.com/article/10.1007/s12105-021-01404-7"],
+      ["Sinonazal odaklı özet (AJNR 2023)", "https://www.ajnr.org/content/early/2023/08/17/ajnr.A7960"]
+    ]
+  },
+  cyto:{
+    title:"Sitopatoloji – Sistem güncellemeleri",
+    bullets:[
+      "🦋 **TBSRTC 3. baskı (2023)**: Terminoloji sade; kategori ROM ve yönetim önerileri güncellendi.",
+      "🚽 **Paris 2.0 (2022)**: LGUN → **NHGUC** içine; üst trakt sitolojisi için ayrı bölüm; ROM güncellendi.",
+      "🥤 **Milan Ed.2 (2023)**: ROM yeniden hesaplandı; yardımcı testler ve radyolojik korelasyon vurgusu yüksek.",
+      "📌 Rapor ipucu: **Kategori + kısa açıklama + ROM + sonraki adım** (tekrar FNA, yardımcı test, klinik/radyoloji)."
+    ],
+    refs:[
+      ["TBSRTC 3rd Ed. (2023) – kitap", "https://link.springer.com/book/10.1007/978-3-031-28046-7"],
+      ["CAP Today özeti (2024)", "https://www.captodayonline.com/bethesda-system-for-reporting-thyroid-cytopathology/?print=pdf"],
+      ["Paris 2.0 güncellemesi (2022)", "https://publinestorage.blob.core.windows.net/journals/JCTP.2022.3(2).59.00035.pdf"],
+      ["Milan Ed.2 (2023) – kitap", "https://link.springer.com/book/10.1007/978-3-031-26662-1"]
+    ]
+  },
+  softtissue:{
+    title:"Yumuşak Doku / Kemik – WHO5 (2020) odak",
+    bullets:[
+      "🧬 **Moleküler belirteçli yeni antiteler** (örn. **CIC‑yeniden düzenlenmiş**, **BCOR‑değişiklikli** sarkomlar, **NTRK füzyonlu** tümörler).",
+      "🧪 IHC/moleküler panel kombinasyonları (STAT6, MUC4, SS18‑SSX, MDM2/CDK4, **NTRK** pan‑TRK vb.) pratik akışta yerleştirilmeli.",
+      "📌 Rapor: Histotip + grade (uygunsa) + sentinel moleküler değişiklik; rezeke örneklerde sınırlara ek vurgu."
+    ],
+    refs:[
+      ["WHO5 Soft Tissue & Bone (2020) — IARC", "https://www.iarc.who.int/news-events/publication-of-the-who-classification-of-tumours-5th-edition-volume-3-soft-tissue-and-bone-tumours/"],
+      ["Güncel özetleme yazıları", "https://www.ejradiology.com/article/S0720-048X%25252821%25252900418-6/fulltext"]
+    ]
+  },
+  hpb:{
+    title:"HPB (Hepatobilier & Pankreas) – WHO5 (2019) ana noktalar",
+    bullets:[
+      "🍶 **İntrahepatik kolanjiyokarsinom**: **küçük kanal vs büyük kanal** alt tipleri biyolojiyi yansıtacak şekilde ayrıldı.",
+      "🧪 **NEN** sınıflaması iki kademeli grade ve nomenklatürle güncellendi; rapora NET/NEC ayrımı net yazılmalı.",
+      "🧠 **Appendiks LAMN**: ICD‑O davranış kodu düzeltildi; dışa yayılım notları rapora eklenmeli.",
+      "🧬 Pankreas öncülleri (**PanIN, IPMN, MCN**) vurgulu; displazi 2‑kademeli derecelendirme önerileri."
+    ],
+    refs:[
+      ["WHO5 Digestive System (2019) — IARC", "https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Digestive-System-Tumours-2019"],
+      ["WHO düzeltmeler (2022)", "https://publications.iarc.who.int/_publications/media/download/6293/42bfbd96b3ce8468429fca83d76e043fa4777a8d.pdf"],
+      ["Arşiv derleme (2020)", "https://meridian.allenpress.com/aplm/article/145/5/607/442305/Recent-Advances-in-Digestive-Tract-Tumors-Updates"]
+    ]
+  },
+  heme_immuno:{
+    title:"İmmün yetmezlik ilişkili LPD / Hematopatoloji – WHO‑HEM5 & ICC (2022–2024)",
+    bullets:[
+      "🆕 **Terminoloji**: “İmmün yetmezlik ve **düzen bozukluğu ile ilişkili** lenfoid proliferasyon ve lenfomalar” (WHO‑HEM5).",
+      "🧪 WHO‑HEM5 ve **ICC 2022** büyük ölçüde uyumlu; EBV‑ilişkili lezyon spektrumu daha net tanımlı.",
+      "📌 Klinik bağlam (iatrojenik, doğumsal, HIV, post‑transplant) rapor yorumunda **zorunlu**; tedavi/izlem algoritmaları farklılık gösterebilir."
+    ],
+    refs:[
+      ["WHO‑HEM5 (2024) — IARC", "https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Haematolymphoid-Tumours-2024"],
+      ["ICC 2022 — Blood", "https://ashpublications.org/blood/article/140/11/1229/485458/The-International-Consensus-Classification-of"],
+      ["Karşılaştırmalı özet (2023–2024)", "https://jhoonline.biomedcentral.com/articles/10.1186/s13045-024-01570-5"]
+    ]
+  },
+  dpcr:{
+    title:"Dijital PCR (Uydu) – nerede işimize yarar?",
+    bullets:[
+      "🎯 **Mutlak kantifikasyon** ve **düşük allel frekansı** saptamada güçlü; MRD, tedavi direnci (örn. **EGFR T790M**, **BCR‑ABL** izlem) için uygun.",
+      "🧪 **Multiplex** ile panel maliyeti/target başı maliyet azalabilir; ancak platforma özgü validasyon şart.",
+      "🧱 Preanalitik: cfDNA/FFPE ayırımı, inhibitörler, kopya sayısı sınırları ve Poisson istatistiği dikkate alınmalı."
+    ],
+    refs:[
+      ["Mini‑review (2023) — JALM", "https://academic.oup.com/jalm/article/9/1/124/7502972"],
+      ["Genel bakış (2025) — Lab on a Chip", "https://pubs.rsc.org/en/content/articlehtml/2025/lc/d5lc00055f"],
+      ["Sistematik derleme (2023)", "https://www.sciencedirect.com/science/article/pii/S2667099223000221"]
+    ]
+  },
+  kappalambda:{
+    title:"Kappa/Lambda Dual ISH – pratik notlar",
+    bullets:[
+      "🧫 **mRNA‑ISH** (çift renk) plazmasitik diferansiyasyon dışı olgularda dahi **klonalite**yi göstermede IHC’ye göre daha duyarlı olabilir.",
+      "🧪 FFPE’de **duyarlılık** ve **spesifite** iyi raporlanmıştır; düşük ekspresyonlu olgularda teknik optimizasyon şart.",
+      "📌 Rapor: “Işık zinciri restriksiyonu (kappa/lambda) lehine/lehe değil” şeklinde; klinik ve diğer testlerle korele edin."
+    ],
+    refs:[
+      ["Modern Pathology 2018 — RNAscope çalışma", "https://www.nature.com/articles/modpathol2017142.pdf"],
+      ["Diagn Pathol 2014 — Dual ISH kıyası", "https://diagnosticpathology.biomedcentral.com/counter/pdf/10.1186/1746-1596-9-144.pdf"],
+      ["Roche test sayfası (bilgilendirici)", "https://diagnostics.roche.com/global/en/products/lab/ventana-kappa-and-lambda-dual-ish-mrna-probe-cocktail-pid00000773.html"]
+    ]
+  },
+  genel:{
+    title:"Genel notlar",
+    bullets:[
+      "🧪 Preanalitik ve raporlama şablonlarına özen — kısa ama **karar verdiren** rapor.",
+      "📚 Oturum konusuna uygun **en az bir** kılavuz okuması ekleyin; aşağıdaki referanslar başlangıç listesi."
+    ],
+    refs:[
+      ["CAP güncel kılavuzlar", "https://www.cap.org/protocols-and-guidelines/current-cap-guidelines"],
+      ["RCPath rehberleri", "https://www.rcpath.org/profession/guidelines.html"]
+    ]
+  }
 };
-let sessions = [
-  {id:'w1', day:'2025-11-12', time:'10:30 - 12:00', title:'Pulmoner Patoloji – Akciğer Kanseri Tanısı ve Sınıflandırılmasında Güncellemeler (Kurs)', track:'Pulmoner', room:'Salon 1'},
-  {id:'w2', day:'2025-11-12', time:'10:30 - 12:00', title:'Moleküler Patolojide Preanalitik Süreçler Çalıştayı – Oturum 1', track:'Moleküler', room:'Salon 2'},
-  {id:'w3', day:'2025-11-12', time:'13:00 - 14:30', title:'Moleküler Patoloji Çalıştayı – Oturum 2 & 3', track:'Moleküler', room:'Salon 2'},
-  {id:'w4', day:'2025-11-12', time:'15:00 - 16:15', title:'Pulmoner Patoloji – Diğer Epitelyal Tümörler vb.', track:'Pulmoner', room:'Salon 1'},
-  {id:'w5', day:'2025-11-12', time:'15:00 - 16:00', title:'Üropatoloji – Böbrek Kistik Lezyonlarında Ayırıcı Tanı (Kurs)', track:'Üro', room:'Salon 4'},
-  {id:'w6', day:'2025-11-12', time:'16:15 - 17:15', title:'Pulmoner Patoloji – Neoadjuvan sonrası MPR & multipl primer', track:'Pulmoner', room:'Salon 1'},
-  {id:'w7', day:'2025-11-12', time:'16:00 - 17:00', title:'Üropatoloji – Olgu Örnekleriyle Böbrek Tümörleri', track:'Üro', room:'Salon 4'},
-  {id:'t1', day:'2025-11-13', time:'08:00 - 09:00', title:'Baş-Boyun Patolojisi – Update from WHO', track:'Baş-Boyun', room:'Salon 1'},
-  {id:'t2', day:'2025-11-13', time:'09:00 - 10:00', title:'Meme HER2 Spektrumu / Sözlü Bildiri 1 / Sitopatoloji', track:'Karma', room:'Birden çok'},
-  {id:'t3', day:'2025-11-13', time:'10:00 - 11:00', title:'Akciğer Mezenşimal Tümörleri / İmmün Yetmezlik Lenfoproliferasyon / Olgu Sunumu', track:'Karma', room:'Birden çok'},
-  {id:'t4', day:'2025-11-13', time:'11:30 - 12:30', title:'Uydu Sempozyumu – Dijital PCR', track:'Uydu', room:'Salon ?'},
-  {id:'t5', day:'2025-11-13', time:'13:30 - 14:30', title:'Uydu Sempozyumu – Kappa/Lambda Dual ISH', track:'Uydu', room:'Salon ?'},
-  {id:'t6', day:'2025-11-13', time:'14:30 - 15:30', title:'Kemi̇k-Yumuşak Doku / Sitopatoloji / Baş-Boyun / HPB eşzamanlı oturumlar', track:'Karma', room:'Çoklu'}
-];
-// Saatleri Date nesnelerine dönüştür
-sessions = sessions.map(s=>{const r=parseTimeRange(s.day, s.time);return {...s, ...r}});
 
-// ---- UI Durum
-let selected = new Set(JSON.parse(localStorage.getItem('patoloji2025:selected')||'[]'));
-let q = '';
-let dayFilter = 'all';
-
-// ---- Render
-const $list = document.getElementById('list');
-const $sel = document.getElementById('selected');
-const $day = document.getElementById('day');
-
-function renderDayOptions(){
-  Object.entries(DAYS).forEach(([iso,label])=>{
-    const opt = document.createElement('option');
-    opt.value = iso; opt.textContent = label; $day.appendChild(opt);
-  });
-}
-
-function render(){
-  $list.innerHTML='';
-  const filtered = sessions
-    .filter(s=> dayFilter==='all' || s.day===dayFilter)
-    .filter(s=> !q || (s.title+" "+(s.track||'')+" "+(s.room||'')).toLowerCase().includes(q.toLowerCase()))
-    .sort((a,b)=> a.day.localeCompare(b.day) || a.start-b.start);
-  if(viewMode==='list') renderList(filtered); else renderTimeline(filtered);
-  renderSelected();
-}
-
-function cssFlags(s){
-  const isSelected = selected.has(s.id);
-  const affected = !isSelected && [...selected].some(id=>{const o=sessions.find(x=>x.id===id);return o && o.day===s.day && overlap(s,o)});
-  const hasConf = overlapsAny(s, sessions.filter(x=>x.day===s.day));
-  const confSelected = isSelected && [...selected].some(id=>{const o=sessions.find(x=>x.id===id);return o && o.id!==s.id && o.day===s.day && overlap(s,o)});
-  return {isSelected, affected, hasConf, confSelected};
-}
-
-function renderList(items){
-  const groups={}; items.forEach(s=>{(groups[s.day]=groups[s.day]||[]).push(s)});
-  for(const [day,arr] of Object.entries(groups)){
-    const h=document.createElement('div');h.className='day';h.textContent=DAYS[day];$list.appendChild(h);
-    arr.forEach(s=>{
-      const f = cssFlags(s);
-      const div = document.createElement('div');
-      div.className = 'session '+(f.confSelected?'conflict':'')+(f.affected?' affected':'')+(f.hasConf?' hasconf':'')+(!f.confSelected && f.isSelected?' ok':'');
-      div.innerHTML = `
-        <div class="time">${hhmm(s.start)} – ${hhmm(s.end)}</div>
-        <div>
-          <div class="title" data-toggle="${s.id}">${s.title}</div>
-          <div class="track">${s.track||''} <span class="room">${s.room||''}</span></div>
-        </div>
-        <div>
-          <label style="display:flex;align-items:center;gap:8px">
-            <input type="checkbox" ${f.isSelected?'checked':''} data-id="${s.id}"/>
-            <span class="chip">Seç</span>
-          </label>
-          ${f.hasConf?`<div style="margin-top:6px;text-align:right"><span class="chip" style="border-color:rgba(245,158,11,.6);color:#fde68a">çakışma olasılığı</span></div>`:''}
-        </div>`;
-      $list.appendChild(div);
-    })
+// --------- Programı çek ve ayrıştır
+async function fetchProgram(){
+  const url='https://r.jina.ai/http://www.patoloji2025.org/tr/bilimsel-program.html';
+  const res=await fetch(url);
+  if(!res.ok){ throw new Error('HTTP '+res.status); }
+  const html=await res.text();
+  const more=parseFromHTML(html);
+  if(more.length){ merge(more); }
+  else{
+    // fallback plain text
+    const text=html.replace(/<[^>]+>/g,'\n'); const out=extractFromText(text); if(out.length) merge(out);
   }
 }
-
-function renderTimeline(items){
-  const groups={}; items.forEach(s=>{(groups[s.day]=groups[s.day]||[]).push(s)});
-  const BASE_H=8, END_H=19; // 08:00–19:00 ekseni
-  const totalMin=(END_H-BASE_H)*60;
-  for(const [day,arr] of Object.entries(groups)){
-    const dayEl=document.createElement('div');dayEl.className='tl-day';
-    const h=document.createElement('div');h.className='day';h.textContent=DAYS[day];dayEl.appendChild(h);
-    // axis
-    const axis=document.createElement('div');axis.className='tl-axis';
-    for(let h=BASE_H;h<=END_H;h++){
-      const t=document.createElement('div');t.className='tick';t.style.left=((h-BASE_H)/(END_H-BASE_H)*100)+'%';t.textContent=String(h).padStart(2,'0')+':00';axis.appendChild(t);
-    }
-    dayEl.appendChild(axis);
-    // rows by room label
-    const rowsByRoom={}; arr.forEach(s=>{const key=s.room||'Salon'; (rowsByRoom[key]=rowsByRoom[key]||[]).push(s)});
-    const tl=document.createElement('div');tl.className='tl';
-    Object.entries(rowsByRoom).forEach(([room,rows])=>{
-      const row=document.createElement('div');row.className='tl-row';
-      const lab=document.createElement('div');lab.className='tl-label';lab.textContent=room;row.appendChild(lab);
-      rows.forEach(s=>{
-        const f=cssFlags(s);
-        const left=(( (s.start.getHours()*60+s.start.getMinutes())-BASE_H*60)/totalMin)*100;
-        const width=(( (s.end - s.start)/60000)/totalMin)*100;
-        const bar=document.createElement('div');
-        bar.className='tl-bar'+(f.confSelected?' conflict':'')+(f.affected?' affected':'')+(!f.confSelected && f.isSelected?' selected':'')+(f.hasConf?' hasconf':'');
-        bar.style.left=left+'%'; bar.style.width=Math.max(width,2)+'%';
-        bar.setAttribute('data-id', s.id);
-        bar.innerHTML=`<span>${hhmm(s.start)}–${hhmm(s.end)} · ${s.title}</span>`;
-        row.appendChild(bar);
+function parseFromHTML(html){
+  const doc=new DOMParser().parseFromString(html,'text/html');
+  const dayMap={'12.11.2025':'2025-11-12','13.11.2025':'2025-11-13','14.11.2025':'2025-11-14','15.11.2025':'2025-11-15','16.11.2025':'2025-11-16'};
+  const out=[]; const tables=[...doc.querySelectorAll('table')]; let curDay=null;
+  const textAll=doc.body.textContent||'';
+  tables.forEach(tbl=>{
+    const hint=((tbl.previousElementSibling&&tbl.previousElementSibling.textContent)||tbl.textContent||'');
+    const dKey=Object.keys(dayMap).find(k=>hint.includes(k))||Object.keys(dayMap).find(k=>textAll.indexOf(k)>-1);
+    if(dKey) curDay=dayMap[dKey];
+    const rows=[...tbl.querySelectorAll('tr')]; if(!rows.length) return;
+    let header=rows.find(r=>/(^|\s)SAAT(\s|$)/i.test(r.textContent))||rows[0];
+    const head=[...header.children];
+    const roomByIdx={}; head.forEach((c,i)=>{ if(i===0) return; const t=c.textContent.trim(); const m=t.match(/SALON\s*\d+/i); roomByIdx[i]= m?m[0].toUpperCase():(t||('Salon '+i)); });
+    let time=null;
+    rows.slice(rows.indexOf(header)+1).forEach(r=>{
+      const tds=[...r.children]; if(!tds.length) return;
+      const first=(tds[0].textContent||'').trim();
+      const tm=first.match(/\d{1,2}:\d{2}\s*[–-]\s*\d{1,2}:\d{2}/); if(tm) time=tm[0].replace('–','-');
+      if(!time||!curDay) return;
+      tds.forEach((td,i)=>{
+        if(i===0) return;
+        const txt=(td.textContent||'').replace(/\s+/g,' ').trim();
+        if(!txt || /(ÖĞLE YEMEĞİ|KAHVE MOLASI)/i.test(txt)) return;
+        const strong=td.querySelector('strong,b'); const title=(strong?strong.textContent:txt).replace(/\s+/g,' ').trim().slice(0,220);
+        const id='auto-'+curDay+'-'+time.replace(/\D/g,'')+'-'+i+'-'+out.length;
+        const rng=parseTimeRange(curDay,time);
+        out.push({id,day:curDay,time,room:roomByIdx[i]||'',title,...rng});
       });
-      tl.appendChild(row);
     });
-    dayEl.appendChild(tl);
-    $list.appendChild(dayEl);
-  }
-}
-
-function renderSelected(){
-  $sel.innerHTML='';
-  const items = sessions.filter(s=>selected.has(s.id)).sort((a,b)=> a.day.localeCompare(b.day) || a.start-b.start);
-  if(items.length===0){
-    $sel.innerHTML = '<p class="muted">Henüz seçim yok.</p>';return;
-  }
-  items.forEach(s=>{
-    const confWith = items.filter(o=>o.id!==s.id && o.day===s.day && overlap(s,o));
-    const row = document.createElement('div');
-    row.className='sel-item'+(confWith.length?' conflict':'');
-    const conflictsDetail = confWith.map(o=>`${hhmm(o.start)}–${hhmm(o.end)} · ${o.title}`).join(' | ');
-    row.innerHTML = `<div>
-      <strong style="color:#fff">${DAYS[s.day]}</strong>
-      <span class="tag">${hhmm(s.start)}–${hhmm(s.end)}</span>
-      <span class="tag">${s.room||''}</span>
-      <div class="muted">${s.title}</div>
-      ${confWith.length?`<div class="muted" style="margin-top:6px">Çakışanlar: ${conflictsDetail}</div>`:''}
-    </div>
-    <div style="display:flex;gap:8px;align-items:center">
-      ${confWith.length?`<span class="tag" style="border-color:var(--warn);color:#fecaca">${confWith.length} çakışma</span>`:''}
-      <button data-remove="${s.id}" class="ghost">Kaldır</button>
-    </div>`;
-    $sel.appendChild(row);
-  })
-}
-
-// ---- Etkileşimler
-$list.addEventListener('change', (e)=>{
-  if(e.target.matches('input[type=checkbox]')){
-    const id = e.target.getAttribute('data-id');
-    if(e.target.checked) selected.add(id); else selected.delete(id);
-    localStorage.setItem('patoloji2025:selected', JSON.stringify([...selected]));
-    render();
-  }
-});
-// Metin başlığına veya zaman çubuğuna tıklama ile seç
-$list.addEventListener('click', (e)=>{
-  const t=e.target.closest('[data-toggle]');
-  if(t){ const id=t.getAttribute('data-toggle'); toggleSel(id); }
-  const bar=e.target.closest('.tl-bar');
-  if(bar){ const id=bar.getAttribute('data-id'); toggleSel(id); }
-});
-function toggleSel(id){
-  if(selected.has(id)) selected.delete(id); else selected.add(id);
-  localStorage.setItem('patoloji2025:selected', JSON.stringify([...selected]));
-  render();
-}
-$sel.addEventListener('click', (e)=>{
-  if(e.target.matches('button[data-remove]')){
-    selected.delete(e.target.getAttribute('data-remove'));
-    localStorage.setItem('patoloji2025:selected', JSON.stringify([...selected]));
-    render();
-  }
-});
-
-document.getElementById('q').addEventListener('input', (e)=>{q=e.target.value;render()});
-$day.addEventListener('change',(e)=>{dayFilter=e.target.value;render()});
-
-document.getElementById('reset').addEventListener('click', ()=>{selected.clear();localStorage.removeItem('patoloji2025:selected');render()});
-
-document.getElementById('viewList').addEventListener('click', ()=>{viewMode='list';localStorage.setItem('patoloji2025:viewMode',viewMode);render()});
-
-document.getElementById('viewTL').addEventListener('click', ()=>{viewMode='timeline';localStorage.setItem('patoloji2025:viewMode',viewMode);render()});
-
-document.getElementById('resolve').addEventListener('click', ()=>{render()});
-
-// ---- ICS dışa aktar
-function toICS(){
-  const items = sessions.filter(s=>selected.has(s.id));
-  const pad = n=> String(n).padStart(2,'0');
-  const dt = d=> d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z';
-  const lines = [
-    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Patoloji2025//Personal Planner//TR'
-  ];
-  items.forEach(s=>{
-    const uid = s.id+'@patoloji2025';
-    lines.push('BEGIN:VEVENT');
-    lines.push('UID:'+uid);
-    lines.push('DTSTAMP:'+dt(new Date()));
-    lines.push('DTSTART:'+dt(s.start));
-    lines.push('DTEND:'+dt(s.end));
-    lines.push('SUMMARY:'+s.title.replace(/[,\n]/g,' '));
-    lines.push('LOCATION:'+(s.room||''));
-    lines.push('END:VEVENT');
   });
-  lines.push('END:VCALENDAR');
-  const blob = new Blob([lines.join('\r\n')],{type:'text/calendar'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href=url; a.download='Patoloji2025-secilenler.ics'; a.click();
-  setTimeout(()=>URL.revokeObjectURL(url), 2000);
+  return out;
 }
-
-document.getElementById('export').addEventListener('click', toICS);
-
-// ---- Basit ayrıştırıcı (beta)
-// Not: Bu çok kaba bir ayrıştırıcıdır; saat aralıklarını ve başlıklardaki satırları çeker.
 function extractFromText(text){
-  const lines = text.split(/\n|\r/).map(s=>s.trim()).filter(Boolean);
-  const dayMap = {
-    '12.11.2025':'2025-11-12','13.11.2025':'2025-11-13','14.11.2025':'2025-11-14','15.11.2025':'2025-11-15','16.11.2025':'2025-11-16'
-  };
-  let curDay = null;
-  const out = [];
+  const lines=text.split(/\n|\r/).map(s=>s.replace(/\s+/g,' ').trim()); const dayMap={'12.11.2025':'2025-11-12','13.11.2025':'2025-11-13','14.11.2025':'2025-11-14','15.11.2025':'2025-11-15','16.11.2025':'2025-11-16'};
+  let curDay=null, rooms=[]; const out=[];
   for(let i=0;i<lines.length;i++){
-    const L = lines[i];
-    const dayKey = Object.keys(dayMap).find(k=>L.includes(k));
-    if(dayKey){curDay=dayMap[dayKey]; continue;}
-    const time = L.match(/\b\d{1,2}:\d{2}\s*[–-]\s*\d{1,2}:\d{2}\b/);
-    if(time && curDay){
-      const title = (lines[i+1]||'').replace(/\s+/g,' ').slice(0,180);
-      const id = 'auto-'+curDay+'-'+time[0].replace(/\D/g,'')+'-'+i;
-      const r = parseTimeRange(curDay, time[0]);
-      out.push({id, day:curDay, time:time[0], title, track:'', room:'' , ...r});
+    const L=lines[i]; const dk=Object.keys(dayMap).find(k=>L.includes(k)); if(dk){curDay=dayMap[dk]; rooms=[]; continue;}
+    if(/\bSALON\b/i.test(L)&&/SAAT/i.test(L)){ rooms=(L.match(/SALON\s*\d+/gi)||[]).map(x=>x.toUpperCase()); continue; }
+    const m=L.match(/\b\d{1,2}:\d{2}\s*[–-]\s*\d{1,2}:\d{2}\b/);
+    if(m && curDay){
+      const time=m[0].replace('–','-'); const bucket=[]; let j=i+1;
+      while(j<lines.length && !/\b\d{1,2}:\d{2}\s*[–-]\s*\d{1,2}:\d{2}\b/.test(lines[j]) && !Object.keys(dayMap).some(k=>lines[j].includes(k)) && bucket.length<10){
+        const t=lines[j]; if(t && !/^(KAHVE MOLASI|ÖĞLE YEMEĞİ)$/i.test(t)) bucket.push(t); j++;
+      }
+      if(rooms.length && bucket.length){
+        for(let r=0;r<Math.min(rooms.length,bucket.length);r++){
+          const id='auto-'+curDay+'-'+time.replace(/\D/g,'')+'-'+r+'-'+i; const rng=parseTimeRange(curDay,time);
+          out.push({id,day:curDay,time,room:rooms[r],title:bucket[r].slice(0,220),...rng});
+        }
+      }else if(bucket.length){
+        const id='auto-'+curDay+'-'+time.replace(/\D/g,'')+'-'+i; const rng=parseTimeRange(curDay,time);
+        out.push({id,day:curDay,time,room:'',title:bucket[0].slice(0,220),...rng});
+      }
     }
   }
   return out;
 }
-
-async function fetchAndParse(){
-  try{
-    const url = document.getElementById('src').value.trim();
-    const res = await fetch(url); // CORS engellenirse catch'e düşer
-    const html = await res.text();
-    const text = html.replace(/<[^>]+>/g,'\n');
-    const more = extractFromText(text);
-    if(!more.length) throw new Error('Metinden veri çıkarılamadı');
-    mergeSessions(more);
-  }catch(err){
-    alert('Çekilemedi: '+err.message+'\nİsterseniz program sayfasındaki metni kopyalayıp aşağıya yapıştırın ve "Ayrıştır" deyin.');
-  }
-}
-
-function mergeSessions(more){
-  const ids = new Set(sessions.map(s=>s.id));
-  more.forEach(s=>{ if(!ids.has(s.id)) sessions.push(s) });
+function merge(more){
+  const seen=new Set(sessions.map(s=>s.id)); more.forEach(s=>{ if(!seen.has(s.id)) sessions.push(s); });
   sessions.sort((a,b)=> a.day.localeCompare(b.day) || a.start-b.start);
   render();
 }
 
-document.getElementById('fetch').addEventListener('click', fetchAndParse);
+// --------- Render
+function render(){
+  $list.innerHTML='';
+  const filtered=sessions
+    .filter(s=> dayFilter==='all'||s.day===dayFilter)
+    .filter(s=> !q || (s.title+' '+(s.room||'')).toLowerCase().includes(q.toLowerCase()));
+  const groups={}; filtered.forEach(s=>{ (groups[s.day]=groups[s.day]||[]).push(s); });
+  for(const [day,arr] of Object.entries(groups)){
+    const h=document.createElement('div'); h.className='day'; h.textContent=DAYS[day]; $list.appendChild(h);
+    arr.forEach(s=>{
+      const topic=detectTopic(s.title);
+      const pack=PREP[topic]||PREP.genel;
+      const d=document.createElement('details'); d.setAttribute('data-id', s.id);
+      const sum=document.createElement('summary');
+      sum.innerHTML='<span class="pill">'+(read.has(s.id)?'✅ Hazır':'⬜ Hazır işaretle')+'</span> '+
+                    '<span class="t">'+s.time+'</span>'+
+                    '<span class="ttl">'+s.title+'</span>'+
+                    (s.room? ' <span class="room">· '+s.room+'</span>':'')+
+                    ' <span class="tag">'+pack.title.split('–')[0].trim()+'</span>';
+      d.appendChild(sum);
+      const inner=document.createElement('div'); inner.className='x';
+      inner.innerHTML='<h3>'+pack.title+'</h3>'+
+        '<ul>'+ pack.bullets.map(b=>'<li>'+b+'</li>').join('') +'</ul>'+
+        '<div class="ref small"><strong>Önerilen okumalar:</strong> '+ pack.refs.map(r=>'<a href="'+r[1]+'" target="_blank" rel="noopener">'+r[0]+'</a>').join(' · ') +'</div>'+
+        '<p class="muted small" style="margin-top:10px">Not: Bu özetler eğitim amaçlıdır; klinik kararlar için kılavuzların tam metinlerine başvurun.</p>';
+      d.appendChild(inner);
+      // işaretleme
+      d.addEventListener('toggle', ()=>{
+        if(d.open){ read.add(s.id); localStorage.setItem('patoloji2025:ready', JSON.stringify([...read])); sum.querySelector('.pill').textContent='✅ Hazır'; }
+      });
+      $list.appendChild(d);
+    });
+  }
+}
 
-document.getElementById('parse').addEventListener('click', ()=>{
-  const text = document.getElementById('raw').value;
-  if(!text.trim()){alert('Metin boş.');return;}
-  const more = extractFromText(text);
-  if(!more.length){alert('Metinden veri çıkarılamadı :(');return}
-  mergeSessions(more);
+document.getElementById('load').addEventListener('click', ()=>{
+  fetchProgram().catch(err=>alert('Program alınamadı: '+err.message));
 });
+// otomatik dene
+fetchProgram().catch(()=>{});
 
-renderDayOptions();
-render();
+$q.addEventListener('input', (e)=>{ q=e.target.value; render(); });
+$day.addEventListener('change', (e)=>{ dayFilter=e.target.value; render(); });
+document.getElementById('toggleRead').addEventListener('click', ()=>{
+  showOnlyRead=!showOnlyRead;
+  if(showOnlyRead){
+    sessions = sessions.filter(s=>read.has(s.id));
+  }else{
+    // yeniden yükle
+    sessions=[]; fetchProgram().catch(()=>{});
+  }
+  render();
+});
+document.getElementById('resetSel').addEventListener('click', ()=>{ read.clear(); localStorage.removeItem('patoloji2025:ready'); render(); });
+
 </script>
 </body>
 </html>
- 
