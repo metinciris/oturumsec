@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Patoloji 2025 – Kişisel Program Seçici</title>
+<style>
+  :root{--bg:#0b1020;--panel:#121936;--muted:#94a3b8;--ok:#16a34a;--warn:#ef4444;--aff:#f59e0b;--brand:#6366f1}
+  html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1020,#0b132b)}
+  .wrap{max-width:1100px;margin:24px auto;padding:16px}
+  .card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(6px);border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  header{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:18px 22px}
+  h1{color:#fff;font-size:22px;margin:0}
+  .badge{font-size:12px;color:#c7d2fe;border:1px solid rgba(99,102,241,.4);padding:4px 8px;border-radius:999px}
+  .grid{display:grid;grid-template-columns:1fr 320px;gap:16px}
+  @media (max-width:980px){.grid{grid-template-columns:1fr}}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap}
+  button,select,input[type="text"]{background:rgba(255,255,255,0.06);color:#e5e7eb;border:1px solid rgba(255,255,255,0.12);padding:10px 12px;border-radius:10px}
+  button{cursor:pointer}
+  button.primary{background:linear-gradient(90deg,var(--brand),#22d3ee);border:none;color:white}
+  button.ghost{background:transparent;border-color:rgba(255,255,255,0.18)}
+  .col{padding:16px}
+  .list{display:flex;flex-direction:column;gap:10px}
+  .session{display:grid;grid-template-columns:110px 1fr auto;gap:12px;padding:12px 12px;border:1px solid rgba(255,255,255,0.09);border-radius:12px}
+  .time{color:#eab308;font-weight:600}
+  .title{color:#e5e7eb;font-weight:600}
+  .track{color:var(--muted);font-size:12px}
+  .room{color:#93c5fd;font-size:12px}
+  .chip{font-size:11px;padding:4px 8px;border-radius:999px;margin-left:8px;border:1px solid rgba(255,255,255,0.2)}
+  .conflict{border-color:rgba(239,68,68,.8);box-shadow:0 0 0 2px rgba(239,68,68,.25) inset;background:rgba(239,68,68,.06)}
+  .ok{border-color:rgba(22,163,74,.6)}
+  .affected{border-color:rgba(245,158,11,.6);box-shadow:0 0 0 2px rgba(245,158,11,.2) inset}
+  .hasconf{outline:1px dashed rgba(245,158,11,.6)}
+  .day{margin-top:8px;color:#cbd5e1;font-weight:700;font-size:14px}
+  .sticky{position:sticky;top:12px}
+  .panel{padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.08)}
+  .muted{color:var(--muted);font-size:13px}
+  .sel{display:flex;flex-direction:column;gap:8px}
+  .sel-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1px dashed rgba(255,255,255,.2);border-radius:10px}
+  .sel-item.conflict{border-color:rgba(239,68,68,.7);box-shadow:0 0 0 2px rgba(239,68,68,.25) inset}
+  .chip.warn{border-color:rgba(239,68,68,.7);color:#fecaca}
+
+  .tag{font-size:11px;border:1px solid rgba(255,255,255,.2);padding:2px 6px;border-radius:6px;margin-left:6px}
+  .foot{color:#9ca3af;font-size:12px;padding:12px 16px;border-top:1px solid rgba(255,255,255,.08)}
+  .search{flex:1;min-width:240px}
+  /* Timeline */
+  .tl-day{margin:16px 0}
+  .tl-axis{position:relative;height:28px;margin:4px 0 8px 110px}
+  .tl-axis .tick{position:absolute;top:0;border-left:1px solid rgba(255,255,255,.15);height:100%;font-size:10px;color:#cbd5e1;transform:translateX(-50%)}
+  .tl{position:relative;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 8px 14px 118px;overflow-x:auto;background:rgba(255,255,255,0.03)}
+  .tl-row{position:relative;height:46px;margin:8px 0}
+  .tl-label{position:absolute;left:8px;top:50%;transform:translateY(-50%);color:#cbd5e1;font-size:12px;width:100px}
+  .tl-bar{position:absolute;height:34px;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 8px;display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,0.06)}
+  .tl-bar.selected{border-color:rgba(22,163,74,.6)}
+  .tl-bar.affected{border-color:rgba(245,158,11,.7)}
+  .tl-bar.conflict{border-color:rgba(239,68,68,.7)}
+  .view-toggle{display:flex;gap:8px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <h1>34. Ulusal Patoloji Kongresi <span class="badge">12–16 Kasım 2025 • Pine Beach, Belek</span></h1>
+        <div class="toolbar">
+          <input id="q" class="search" type="text" placeholder="Ara: başlık, konu, salon…"/>
+          <select id="day">
+            <option value="all">Tüm günler</option>
+          </select>
+          <div class="view-toggle">
+            <button id="viewList" class="ghost">Liste</button>
+            <button id="viewTL" class="ghost">Zaman Çizelgesi</button>
+          </div>
+          <button id="export" class="ghost">Seçtiklerimi .ics olarak dışa aktar</button>
+          <button id="reset" class="ghost">Seçimleri temizle</button>
+        </div>
+      </header>
+      <div class="grid">
+        <div class="col">
+          <div id="list" class="list"></div>
+        </div>
+        <div class="col sticky">
+          <div class="panel">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <strong style="color:#fff">Seçtiklerim</strong>
+              <button id="resolve" class="primary">Çakışmaları göster</button>
+            </div>
+            <div id="selected" class="sel" style="margin-top:8px"></div>
+            <p class="muted" style="margin-top:8px">Çakışan oturumlar kırmızı kenarlıkla işaretlenir. Aynı zaman aralığında birden fazla seçim yapabilirsiniz; bu araç sadece sizi uyarır.</p>
+          </div>
+          <div class="panel" style="margin-top:12px">
+            <strong style="color:#fff">Programı içe aktar</strong>
+            <p class="muted">Aşağıdaki URL, resmi program sayfasıdır. “Çek”e tıklarsanız sayfadan saatleri ve başlıkları çıkarmayı dener (beta). CORS engeli olursa, sayfadaki metni kopyalayıp kutuya yapıştırın.</p>
+            <input type="text" id="src" value="https://www.patoloji2025.org/tr/bilimsel-program.html" />
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button id="fetch" class="ghost">Sayfadan çek (beta)</button>
+              <button id="parse" class="ghost">Aşağıdaki metni ayrıştır</button>
+            </div>
+            <textarea id="raw" rows="6" style="width:100%;margin-top:8px;background:rgba(255,255,255,0.05);color:#e5e7eb;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px" placeholder="Program metnini buraya yapıştırın…"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="foot">Kaynak: patoloji2025.org bilimsel program sayfası • Bu dosya yerelde çalışır, verilerinizi dışarıya göndermez.</div>
+    </div>
+  </div>
+
+<script>
+// ---- Yardımcılar
+const tz = 'Europe/Istanbul';
+let viewMode = localStorage.getItem('patoloji2025:viewMode')||'list';
+const df = (d) => new Intl.DateTimeFormat('tr-TR', {dateStyle:'medium', timeStyle:'short', timeZone: tz}).format(d);
+function parseTimeRange(dayISO, range){
+  // range: "HH:MM - HH:MM" or "HH:MM – HH:MM"
+  const m = range.match(/(\d{1,2}:\d{2})\s*[–-]\s*(\d{1,2}:\d{2})/);
+  if(!m) return null;
+  const [_, s, e] = m;
+  const [sh, sm] = s.split(':').map(Number);
+  const [eh, em] = e.split(':').map(Number);
+  const start = new Date(dayISO);
+  start.setHours(sh, sm, 0, 0);
+  const end = new Date(dayISO);
+  end.setHours(eh, em, 0, 0);
+  return {start, end};
+}
+function overlap(a,b){return a.start < b.end && b.start < a.end}
+function overlapsAny(s,arr){return arr.some(o=>o.id!==s.id && o.day===s.day && overlap(s,o))}
+function hhmm(d){return d.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:tz})}
+
+// ---- Program (başlangıç verisi)
+// Kaynak metinden manuel çıkarılmış örnekler (tam listeyi İçeri Aktar bölümünden genişletebilirsiniz)
+const DAYS = {
+  '2025-11-12': '12.11.2025 Çarşamba',
+  '2025-11-13': '13.11.2025 Perşembe',
+  '2025-11-14': '14.11.2025 Cuma',
+  '2025-11-15': '15.11.2025 Cumartesi',
+  '2025-11-16': '16.11.2025 Pazar'
+};
+let sessions = [
+  {id:'w1', day:'2025-11-12', time:'10:30 - 12:00', title:'Pulmoner Patoloji – Akciğer Kanseri Tanısı ve Sınıflandırılmasında Güncellemeler (Kurs)', track:'Pulmoner', room:'Salon 1'},
+  {id:'w2', day:'2025-11-12', time:'10:30 - 12:00', title:'Moleküler Patolojide Preanalitik Süreçler Çalıştayı – Oturum 1', track:'Moleküler', room:'Salon 2'},
+  {id:'w3', day:'2025-11-12', time:'13:00 - 14:30', title:'Moleküler Patoloji Çalıştayı – Oturum 2 & 3', track:'Moleküler', room:'Salon 2'},
+  {id:'w4', day:'2025-11-12', time:'15:00 - 16:15', title:'Pulmoner Patoloji – Diğer Epitelyal Tümörler vb.', track:'Pulmoner', room:'Salon 1'},
+  {id:'w5', day:'2025-11-12', time:'15:00 - 16:00', title:'Üropatoloji – Böbrek Kistik Lezyonlarında Ayırıcı Tanı (Kurs)', track:'Üro', room:'Salon 4'},
+  {id:'w6', day:'2025-11-12', time:'16:15 - 17:15', title:'Pulmoner Patoloji – Neoadjuvan sonrası MPR & multipl primer', track:'Pulmoner', room:'Salon 1'},
+  {id:'w7', day:'2025-11-12', time:'16:00 - 17:00', title:'Üropatoloji – Olgu Örnekleriyle Böbrek Tümörleri', track:'Üro', room:'Salon 4'},
+  {id:'t1', day:'2025-11-13', time:'08:00 - 09:00', title:'Baş-Boyun Patolojisi – Update from WHO', track:'Baş-Boyun', room:'Salon 1'},
+  {id:'t2', day:'2025-11-13', time:'09:00 - 10:00', title:'Meme HER2 Spektrumu / Sözlü Bildiri 1 / Sitopatoloji', track:'Karma', room:'Birden çok'},
+  {id:'t3', day:'2025-11-13', time:'10:00 - 11:00', title:'Akciğer Mezenşimal Tümörleri / İmmün Yetmezlik Lenfoproliferasyon / Olgu Sunumu', track:'Karma', room:'Birden çok'},
+  {id:'t4', day:'2025-11-13', time:'11:30 - 12:30', title:'Uydu Sempozyumu – Dijital PCR', track:'Uydu', room:'Salon ?'},
+  {id:'t5', day:'2025-11-13', time:'13:30 - 14:30', title:'Uydu Sempozyumu – Kappa/Lambda Dual ISH', track:'Uydu', room:'Salon ?'},
+  {id:'t6', day:'2025-11-13', time:'14:30 - 15:30', title:'Kemi̇k-Yumuşak Doku / Sitopatoloji / Baş-Boyun / HPB eşzamanlı oturumlar', track:'Karma', room:'Çoklu'}
+];
+// Saatleri Date nesnelerine dönüştür
+sessions = sessions.map(s=>{const r=parseTimeRange(s.day, s.time);return {...s, ...r}});
+
+// ---- UI Durum
+let selected = new Set(JSON.parse(localStorage.getItem('patoloji2025:selected')||'[]'));
+let q = '';
+let dayFilter = 'all';
+
+// ---- Render
+const $list = document.getElementById('list');
+const $sel = document.getElementById('selected');
+const $day = document.getElementById('day');
+
+function renderDayOptions(){
+  Object.entries(DAYS).forEach(([iso,label])=>{
+    const opt = document.createElement('option');
+    opt.value = iso; opt.textContent = label; $day.appendChild(opt);
+  });
+}
+
+function render(){
+  $list.innerHTML='';
+  const filtered = sessions
+    .filter(s=> dayFilter==='all' || s.day===dayFilter)
+    .filter(s=> !q || (s.title+" "+(s.track||'')+" "+(s.room||'')).toLowerCase().includes(q.toLowerCase()))
+    .sort((a,b)=> a.day.localeCompare(b.day) || a.start-b.start);
+  if(viewMode==='list') renderList(filtered); else renderTimeline(filtered);
+  renderSelected();
+}
+
+function cssFlags(s){
+  const isSelected = selected.has(s.id);
+  const affected = !isSelected && [...selected].some(id=>{const o=sessions.find(x=>x.id===id);return o && o.day===s.day && overlap(s,o)});
+  const hasConf = overlapsAny(s, sessions.filter(x=>x.day===s.day));
+  const confSelected = isSelected && [...selected].some(id=>{const o=sessions.find(x=>x.id===id);return o && o.id!==s.id && o.day===s.day && overlap(s,o)});
+  return {isSelected, affected, hasConf, confSelected};
+}
+
+function renderList(items){
+  const groups={}; items.forEach(s=>{(groups[s.day]=groups[s.day]||[]).push(s)});
+  for(const [day,arr] of Object.entries(groups)){
+    const h=document.createElement('div');h.className='day';h.textContent=DAYS[day];$list.appendChild(h);
+    arr.forEach(s=>{
+      const f = cssFlags(s);
+      const div = document.createElement('div');
+      div.className = 'session '+(f.confSelected?'conflict':'')+(f.affected?' affected':'')+(f.hasConf?' hasconf':'')+(!f.confSelected && f.isSelected?' ok':'');
+      div.innerHTML = `
+        <div class="time">${hhmm(s.start)} – ${hhmm(s.end)}</div>
+        <div>
+          <div class="title" data-toggle="${s.id}">${s.title}</div>
+          <div class="track">${s.track||''} <span class="room">${s.room||''}</span></div>
+        </div>
+        <div>
+          <label style="display:flex;align-items:center;gap:8px">
+            <input type="checkbox" ${f.isSelected?'checked':''} data-id="${s.id}"/>
+            <span class="chip">Seç</span>
+          </label>
+          ${f.hasConf?`<div style="margin-top:6px;text-align:right"><span class="chip" style="border-color:rgba(245,158,11,.6);color:#fde68a">çakışma olasılığı</span></div>`:''}
+        </div>`;
+      $list.appendChild(div);
+    })
+  }
+}
+
+function renderTimeline(items){
+  const groups={}; items.forEach(s=>{(groups[s.day]=groups[s.day]||[]).push(s)});
+  const BASE_H=8, END_H=19; // 08:00–19:00 ekseni
+  const totalMin=(END_H-BASE_H)*60;
+  for(const [day,arr] of Object.entries(groups)){
+    const dayEl=document.createElement('div');dayEl.className='tl-day';
+    const h=document.createElement('div');h.className='day';h.textContent=DAYS[day];dayEl.appendChild(h);
+    // axis
+    const axis=document.createElement('div');axis.className='tl-axis';
+    for(let h=BASE_H;h<=END_H;h++){
+      const t=document.createElement('div');t.className='tick';t.style.left=((h-BASE_H)/(END_H-BASE_H)*100)+'%';t.textContent=String(h).padStart(2,'0')+':00';axis.appendChild(t);
+    }
+    dayEl.appendChild(axis);
+    // rows by room label
+    const rowsByRoom={}; arr.forEach(s=>{const key=s.room||'Salon'; (rowsByRoom[key]=rowsByRoom[key]||[]).push(s)});
+    const tl=document.createElement('div');tl.className='tl';
+    Object.entries(rowsByRoom).forEach(([room,rows])=>{
+      const row=document.createElement('div');row.className='tl-row';
+      const lab=document.createElement('div');lab.className='tl-label';lab.textContent=room;row.appendChild(lab);
+      rows.forEach(s=>{
+        const f=cssFlags(s);
+        const left=(( (s.start.getHours()*60+s.start.getMinutes())-BASE_H*60)/totalMin)*100;
+        const width=(( (s.end - s.start)/60000)/totalMin)*100;
+        const bar=document.createElement('div');
+        bar.className='tl-bar'+(f.confSelected?' conflict':'')+(f.affected?' affected':'')+(!f.confSelected && f.isSelected?' selected':'')+(f.hasConf?' hasconf':'');
+        bar.style.left=left+'%'; bar.style.width=Math.max(width,2)+'%';
+        bar.setAttribute('data-id', s.id);
+        bar.innerHTML=`<span>${hhmm(s.start)}–${hhmm(s.end)} · ${s.title}</span>`;
+        row.appendChild(bar);
+      });
+      tl.appendChild(row);
+    });
+    dayEl.appendChild(tl);
+    $list.appendChild(dayEl);
+  }
+}
+
+function renderSelected(){
+  $sel.innerHTML='';
+  const items = sessions.filter(s=>selected.has(s.id)).sort((a,b)=> a.day.localeCompare(b.day) || a.start-b.start);
+  if(items.length===0){
+    $sel.innerHTML = '<p class="muted">Henüz seçim yok.</p>';return;
+  }
+  items.forEach(s=>{
+    const confWith = items.filter(o=>o.id!==s.id && o.day===s.day && overlap(s,o));
+    const row = document.createElement('div');
+    row.className='sel-item'+(confWith.length?' conflict':'');
+    const conflictsDetail = confWith.map(o=>`${hhmm(o.start)}–${hhmm(o.end)} · ${o.title}`).join(' | ');
+    row.innerHTML = `<div>
+      <strong style="color:#fff">${DAYS[s.day]}</strong>
+      <span class="tag">${hhmm(s.start)}–${hhmm(s.end)}</span>
+      <span class="tag">${s.room||''}</span>
+      <div class="muted">${s.title}</div>
+      ${confWith.length?`<div class="muted" style="margin-top:6px">Çakışanlar: ${conflictsDetail}</div>`:''}
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      ${confWith.length?`<span class="tag" style="border-color:var(--warn);color:#fecaca">${confWith.length} çakışma</span>`:''}
+      <button data-remove="${s.id}" class="ghost">Kaldır</button>
+    </div>`;
+    $sel.appendChild(row);
+  })
+}
+
+// ---- Etkileşimler
+$list.addEventListener('change', (e)=>{
+  if(e.target.matches('input[type=checkbox]')){
+    const id = e.target.getAttribute('data-id');
+    if(e.target.checked) selected.add(id); else selected.delete(id);
+    localStorage.setItem('patoloji2025:selected', JSON.stringify([...selected]));
+    render();
+  }
+});
+// Metin başlığına veya zaman çubuğuna tıklama ile seç
+$list.addEventListener('click', (e)=>{
+  const t=e.target.closest('[data-toggle]');
+  if(t){ const id=t.getAttribute('data-toggle'); toggleSel(id); }
+  const bar=e.target.closest('.tl-bar');
+  if(bar){ const id=bar.getAttribute('data-id'); toggleSel(id); }
+});
+function toggleSel(id){
+  if(selected.has(id)) selected.delete(id); else selected.add(id);
+  localStorage.setItem('patoloji2025:selected', JSON.stringify([...selected]));
+  render();
+}
+$sel.addEventListener('click', (e)=>{
+  if(e.target.matches('button[data-remove]')){
+    selected.delete(e.target.getAttribute('data-remove'));
+    localStorage.setItem('patoloji2025:selected', JSON.stringify([...selected]));
+    render();
+  }
+});
+
+document.getElementById('q').addEventListener('input', (e)=>{q=e.target.value;render()});
+$day.addEventListener('change',(e)=>{dayFilter=e.target.value;render()});
+
+document.getElementById('reset').addEventListener('click', ()=>{selected.clear();localStorage.removeItem('patoloji2025:selected');render()});
+
+document.getElementById('viewList').addEventListener('click', ()=>{viewMode='list';localStorage.setItem('patoloji2025:viewMode',viewMode);render()});
+
+document.getElementById('viewTL').addEventListener('click', ()=>{viewMode='timeline';localStorage.setItem('patoloji2025:viewMode',viewMode);render()});
+
+document.getElementById('resolve').addEventListener('click', ()=>{render()});
+
+// ---- ICS dışa aktar
+function toICS(){
+  const items = sessions.filter(s=>selected.has(s.id));
+  const pad = n=> String(n).padStart(2,'0');
+  const dt = d=> d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+'00Z';
+  const lines = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Patoloji2025//Personal Planner//TR'
+  ];
+  items.forEach(s=>{
+    const uid = s.id+'@patoloji2025';
+    lines.push('BEGIN:VEVENT');
+    lines.push('UID:'+uid);
+    lines.push('DTSTAMP:'+dt(new Date()));
+    lines.push('DTSTART:'+dt(s.start));
+    lines.push('DTEND:'+dt(s.end));
+    lines.push('SUMMARY:'+s.title.replace(/[,\n]/g,' '));
+    lines.push('LOCATION:'+(s.room||''));
+    lines.push('END:VEVENT');
+  });
+  lines.push('END:VCALENDAR');
+  const blob = new Blob([lines.join('\r\n')],{type:'text/calendar'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download='Patoloji2025-secilenler.ics'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url), 2000);
+}
+
+document.getElementById('export').addEventListener('click', toICS);
+
+// ---- Basit ayrıştırıcı (beta)
+// Not: Bu çok kaba bir ayrıştırıcıdır; saat aralıklarını ve başlıklardaki satırları çeker.
+function extractFromText(text){
+  const lines = text.split(/\n|\r/).map(s=>s.trim()).filter(Boolean);
+  const dayMap = {
+    '12.11.2025':'2025-11-12','13.11.2025':'2025-11-13','14.11.2025':'2025-11-14','15.11.2025':'2025-11-15','16.11.2025':'2025-11-16'
+  };
+  let curDay = null;
+  const out = [];
+  for(let i=0;i<lines.length;i++){
+    const L = lines[i];
+    const dayKey = Object.keys(dayMap).find(k=>L.includes(k));
+    if(dayKey){curDay=dayMap[dayKey]; continue;}
+    const time = L.match(/\b\d{1,2}:\d{2}\s*[–-]\s*\d{1,2}:\d{2}\b/);
+    if(time && curDay){
+      const title = (lines[i+1]||'').replace(/\s+/g,' ').slice(0,180);
+      const id = 'auto-'+curDay+'-'+time[0].replace(/\D/g,'')+'-'+i;
+      const r = parseTimeRange(curDay, time[0]);
+      out.push({id, day:curDay, time:time[0], title, track:'', room:'' , ...r});
+    }
+  }
+  return out;
+}
+
+async function fetchAndParse(){
+  try{
+    const url = document.getElementById('src').value.trim();
+    const res = await fetch(url); // CORS engellenirse catch'e düşer
+    const html = await res.text();
+    const text = html.replace(/<[^>]+>/g,'\n');
+    const more = extractFromText(text);
+    if(!more.length) throw new Error('Metinden veri çıkarılamadı');
+    mergeSessions(more);
+  }catch(err){
+    alert('Çekilemedi: '+err.message+'\nİsterseniz program sayfasındaki metni kopyalayıp aşağıya yapıştırın ve "Ayrıştır" deyin.');
+  }
+}
+
+function mergeSessions(more){
+  const ids = new Set(sessions.map(s=>s.id));
+  more.forEach(s=>{ if(!ids.has(s.id)) sessions.push(s) });
+  sessions.sort((a,b)=> a.day.localeCompare(b.day) || a.start-b.start);
+  render();
+}
+
+document.getElementById('fetch').addEventListener('click', fetchAndParse);
+
+document.getElementById('parse').addEventListener('click', ()=>{
+  const text = document.getElementById('raw').value;
+  if(!text.trim()){alert('Metin boş.');return;}
+  const more = extractFromText(text);
+  if(!more.length){alert('Metinden veri çıkarılamadı :(');return}
+  mergeSessions(more);
+});
+
+renderDayOptions();
+render();
+</script>
+</body>
+</html>
